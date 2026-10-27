@@ -1,0 +1,64 @@
+
+{
+  "dailyRecords": [
+    {
+      "date": "2026-10-26",
+      "publicHoliday": false,
+      "expectedDuration": "PT8H",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": [
+        { "start": "08:00", "end": "18:00" }
+      ]
+    },
+    {
+      "date": "2026-10-27",
+      "publicHoliday": false,
+      "expectedDuration": "PT8H",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": [
+        { "start": "08:00", "end": "18:00" }
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "publicHoliday": false,
+      "expectedDuration": "PT8H",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": [
+        { "start": "09:00", "end": "17:00" }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "publicHoliday": false,
+      "expectedDuration": "PT8H",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": [
+        { "start": "09:00", "end": "17:00" }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "publicHoliday": false,
+      "expectedDuration": "PT8H",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": [
+        { "start": "09:00", "end": "15:00" }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "publicHoliday": false,
+      "expectedDuration": "PT0S",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": []
+    },
+    {
+      "date": "2026-11-01",
+      "publicHoliday": false,
+      "expectedDuration": "PT0S",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": []
+    }
+  ]
+}
