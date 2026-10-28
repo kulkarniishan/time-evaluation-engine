@@ -29,6 +29,7 @@ The result is printed to stdout as named wages per date or period. <!-- CHECK: d
 ```bash
 mvn test
 ```
+![Test Results](docs/test-results.png)
 
 The tests cover attendance duration, daily overtime, time outside the window, Sunday and public-holiday precedence, and the weekly/daily reconciliation (Examples A and B). <!-- CHECK: match to the actual tests -->
 
