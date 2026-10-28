@@ -47,7 +47,17 @@ The tests cover attendance duration, daily overtime, time outside the window, Su
 
 The weekday is derived from the date.
 
-**Rules file** (`rules.json`): a list of rules. Each rule has a `type`, a wage `name`, rule-specific parameters, and an optional `enabled` flag.
+**Rules file** (`rules.json`) has two sections: `dailyRules` (evaluated per day) and `periodRules` (evaluated per week, after the daily pass).
+
+| Field | Description |
+|---|---|
+| `type` | Which rule to apply, e.g. `dailyOvertime` |
+| `wageName` | Name of the wage the rule produces |
+| `applicableDays` | Weekdays the rule applies to (`dailyOvertime`) |
+| `dailyOvertimeWageName` | Daily wage that a period rule reconciles against (`weeklyOvertime`) |
+| `weeklyThreshold` | ISO-8601 duration, e.g. `PT40H` (`weeklyOvertime`) |
+| `enabled` | Optional, defaults to `true` |
+
 ```json
 {
   "dailyRules": [
@@ -103,6 +113,8 @@ The weekday is derived from the date.
 | Sunday work | Attendance on a Sunday that is not a public holiday |
 | Public-holiday work | Attendance on a public holiday (takes precedence over Sunday) |
 | Weekly overtime | Weekly attendance beyond a threshold, reduced by daily overtime already counted |
+
+> **Note:** Sunday and public-holiday work share one rule type (`sundayAndPublicHoliday`) because a precedence (holiday overrides Sunday) that couples the two wages.
 
 ### Weekly/daily reconciliation
 
