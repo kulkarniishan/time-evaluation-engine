@@ -39,7 +39,7 @@
     },
     {
       "date": "2026-10-30",
-      "publicHoliday": false,
+      "publicHoliday": true,
       "expectedDuration": "PT8H",
       "expectedWindow": { "start": "09:00", "end": "17:00" },
       "intervals": [

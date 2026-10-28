@@ -8,7 +8,8 @@ import org.example.engine.TimeEvaluationEngine;
 import org.example.model.Wage;
 
 import java.time.Duration;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Main {
 
@@ -27,11 +28,14 @@ public class Main {
                 new TimeEvaluationEngine(configuration);
 
         List<Wage> wages = engine.evaluate(
-                attendanceInput.dailyRecord()
+                attendanceInput.dailyRecords()
         );
 
         // Print the results as a table.
         printWages(wages);
+
+        //Print Wages Grouped by Date
+        printWagesGroupedByDate(wages);
     }
 
     private static void printWages(List<Wage> wages) {
@@ -53,6 +57,56 @@ public class Main {
 
         System.out.println(line);
         System.out.println("Total wage entries: " + wages.size());
+    }
+
+    private static void printWagesGroupedByDate(List<Wage> wages) {
+        Map<LocalDate, Map<String, Duration>> grouped = new TreeMap<>();
+
+        Set<String> wageNames = new TreeSet<>();
+
+        for (Wage wage : wages) {
+            wageNames.add(wage.name());
+
+            grouped
+                    .computeIfAbsent(wage.date(), date -> new HashMap<>())
+                    .merge(wage.name(), wage.duration(), Duration::plus);
+        }
+
+        int dateWidth = 12;
+        int wageWidth = 24;
+
+        String separator = "+" + "-".repeat(dateWidth + 2) + "+"
+                + ("-".repeat(wageWidth + 2) + "+").repeat(wageNames.size());
+
+        System.out.println();
+        System.out.println("                    GROUPED BY DATE");
+        System.out.println(separator);
+
+        System.out.printf("| %-" + dateWidth + "s |", "Date");
+
+        for (String name : wageNames) {
+            System.out.printf(" %-" + wageWidth + "s |", name);
+        }
+        System.out.println();
+
+        System.out.println(separator);
+
+        for (Map.Entry<LocalDate, Map<String, Duration>> entry : grouped.entrySet()) {
+            System.out.printf("| %-" + dateWidth + "s |", entry.getKey());
+
+            for (String name : wageNames) {
+                Duration duration = entry.getValue()
+                        .getOrDefault(name, Duration.ZERO);
+
+                System.out.printf(" %-" + wageWidth + "s |",
+                        formatDuration(duration));
+            }
+
+            System.out.println();
+        }
+
+        System.out.println(separator);
+        System.out.println("Total dates: " + grouped.size());
     }
 
     private static String formatDuration(Duration duration) {

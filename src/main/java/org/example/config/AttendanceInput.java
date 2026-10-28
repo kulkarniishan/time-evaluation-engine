@@ -6,9 +6,9 @@ import org.example.model.DailyRecord;
 import java.util.List;
 
 public record AttendanceInput(
-        List<DailyRecord> dailyRecord
+        List<DailyRecord> dailyRecords
 ) {
     public AttendanceInput {
-        dailyRecord = List.copyOf(dailyRecord);
+        dailyRecords = List.copyOf(dailyRecords);
     }
 }
