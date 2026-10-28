@@ -110,10 +110,10 @@ public class Main {
     }
 
     private static String formatDuration(Duration duration) {
-        long totalSeconds = duration.getSeconds();
-        long hours = totalSeconds / 3600;
-        long minutes = Math.abs((totalSeconds % 3600) / 60);
+        long totalMinutes = duration.toMinutes();
+        long hours = totalMinutes / 60;
+        long minutes = Math.abs(totalMinutes % 60);
 
-        return String.format("%02d:%02d", hours, minutes);
+        return String.format("%dh %02dm", hours, minutes);
     }
 }
