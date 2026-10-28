@@ -4,8 +4,8 @@ A Java backend that evaluates attendance data using configurable rules and produ
 
 ## Requirements
 
-- JDK 25 <!-- CHECK: or lower this to 21 in pom.xml and here -->
-- Maven 3.9+ <!-- CHECK: use the version you actually ran -->
+- JDK 25
+- Maven 3.9+
 
 ## Build and run
 
@@ -22,7 +22,7 @@ Example (Example A from the assignment):
 mvn exec:java -Dexec.args="examples/example-a-attendance.json examples/rules.json"
 ```
 
-The result is printed to stdout as named wages per date or period. <!-- CHECK: describe the real output format -->
+The result is printed to stdout as named wages per date or period.
 
 ## Tests
 
@@ -31,7 +31,7 @@ mvn test
 ```
 ![Test Results](docs/test-results.png)
 
-The tests cover attendance duration, daily overtime, time outside the window, Sunday and public-holiday precedence, and the weekly/daily reconciliation (Examples A and B). <!-- CHECK: match to the actual tests -->
+The tests cover attendance duration, daily overtime, time outside the window, Sunday and public-holiday precedence, and the weekly/daily reconciliation (Examples A and B).
 
 ## Input format
 
@@ -47,7 +47,51 @@ The tests cover attendance duration, daily overtime, time outside the window, Su
 
 The weekday is derived from the date.
 
-**Rules file** (`rules.json`): a list of rules. Each rule has a `type`, a wage `name`, rule-specific parameters, and an optional `enabled` flag. <!-- CHECK: show one real rule snippet here, copied from your rules.json -->
+**Rules file** (`rules.json`): a list of rules. Each rule has a `type`, a wage `name`, rule-specific parameters, and an optional `enabled` flag.
+```json
+{
+  "dailyRules": [
+    {
+      "type": "attendanceDuration",
+      "wageName": "ATTENDANCE_DURATION",
+      "enabled": true
+    },
+    {
+      "type": "dailyOvertime",
+      "wageName": "DAILY_OVERTIME",
+      "applicableDays": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY"
+      ],
+      "enabled": true
+    },
+    {
+      "type": "outsideExpectedWindow",
+      "wageName": "OUTSIDE_EXPECTED_WINDOW",
+      "enabled": true
+    },
+    {
+      "type": "sundayAndPublicHoliday",
+      "sundayWageName": "SUNDAY_WORK",
+      "publicHolidayWageName": "PUBLIC_HOLIDAY_WORK",
+      "enabled": true
+    }
+  ],
+  "periodRules": [
+    {
+      "type": "weeklyOvertime",
+      "wageName": "WEEKLY_OVERTIME",
+      "dailyOvertimeWageName": "DAILY_OVERTIME",
+      "weeklyThreshold": "PT40H",
+      "enabled": true
+    }
+  ]
+}
+
+```
 
 ## Supported rules
 
@@ -98,6 +142,6 @@ With daily overtime above 8 h on Monday to Friday and weekly overtime above 40 h
 
 ## Not done / limitations
 
-- Monthly aggregation is not implemented. <!-- CHECK: delete if it is -->
+- Monthly aggregation is not implemented.
 - Rules are evaluated in the configured order; there is no dependency resolution between rules beyond the daily-then-weekly passes.
-- Minimal validation of malformed configuration. <!-- CHECK: adjust to reality -->
+- Minimal validation of malformed configuration.
