@@ -13,15 +13,17 @@ import java.util.*;
 
 public class Main {
 
-    static void main() throws Exception {
+    static void main(String[] args) throws Exception {
+        String attendancePath = args.length > 0 ? args[0] : null;
+        String rulesPath = args.length > 1 ? args[1] : null;
 
         // Load the rule configuration.
         RuleConfiguration configuration =
-                new RuleConfigurationLoader().load();
+                new RuleConfigurationLoader().load(rulesPath);
 
         // Load attendance and daily information.
         AttendanceInput attendanceInput =
-                new AttendanceInputLoader().load();
+                new AttendanceInputLoader().load(attendancePath);
 
         // Create and run the engine.
         TimeEvaluationEngine engine =

@@ -1,0 +1,14 @@
+
+{
+  "dailyRecords": [
+    {
+      "date": "2026-10-26",
+      "publicHoliday": false,
+      "expectedDuration": "PT8H",
+      "expectedWindow": { "start": "09:00", "end": "17:00" },
+      "intervals": [
+        { "start": "08:00", "end": "18:00" }
+      ]
+    }
+  ]
+}
