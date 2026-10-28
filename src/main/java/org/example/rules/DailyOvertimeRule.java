@@ -2,6 +2,7 @@ package org.example.rules;
 
 import org.example.model.DailyRecord;
 import org.example.model.Wage;
+import org.example.util.AttendanceCalculator;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -36,14 +37,15 @@ public class DailyOvertimeRule implements WageRule {
 
     @Override
     public List<Wage> evaluate(DailyRecord dailyRecord) {
+        if (!applicableDays.contains(dailyRecord.getDayOfWeek())) {
+            return List.of();
+        }
+
+        Duration workedDuration = AttendanceCalculator.totalDuration(dailyRecord);
         Duration overtimeDuration = Duration.ZERO;
 
-        if(applicableDays.contains(dailyRecord.getDayOfWeek())){
-            Duration workedDuration = dailyRecord.intervals().stream().map(attendanceInterval -> attendanceInterval.duration()).reduce(Duration.ZERO, Duration::plus);
-
-            if (workedDuration.compareTo(dailyRecord.expectedDuration()) > 0) {
-                overtimeDuration = workedDuration.minus(dailyRecord.expectedDuration());
-            }
+        if (workedDuration.compareTo(dailyRecord.expectedDuration()) > 0) {
+            overtimeDuration = workedDuration.minus(dailyRecord.expectedDuration());
         }
 
         return List.of(new Wage(

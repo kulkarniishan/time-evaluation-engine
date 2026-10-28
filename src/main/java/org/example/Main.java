@@ -97,11 +97,13 @@ public class Main {
             System.out.printf("| %-" + dateWidth + "s |", entry.getKey());
 
             for (String name : wageNames) {
-                Duration duration = entry.getValue()
-                        .getOrDefault(name, Duration.ZERO);
+                Duration duration = entry.getValue().get(name);
 
-                System.out.printf(" %-" + wageWidth + "s |",
-                        formatDuration(duration));
+                String value = duration == null
+                        ? "-"
+                        : formatDuration(duration);
+
+                System.out.printf(" %-" + wageWidth + "s |", value);
             }
 
             System.out.println();

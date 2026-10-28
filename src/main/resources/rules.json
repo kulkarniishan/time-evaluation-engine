@@ -10,7 +10,6 @@
       "type": "dailyOvertime",
       "wageName": "DAILY_OVERTIME",
       "applicableDays": [
-        "MONDAY",
         "TUESDAY",
         "WEDNESDAY",
         "THURSDAY",
