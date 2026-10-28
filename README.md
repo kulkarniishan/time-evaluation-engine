@@ -66,10 +66,10 @@ Weekly overtime is reduced by the daily overtime already accounted for, with a m
 
 With daily overtime above 8 h on Monday to Friday and weekly overtime above 40 h over all seven days:
 
-| Example | Daily OT before | Weekly OT before | Reported daily OT | Reported weekly OT |
-|---|---|---|---|---|
-| A | 4 h | 2 h | 4 h | 0 h |
-| B | 2 h | 6 h | 2 h | 4 h |
+| Example | Daily OT | Weekly OT (raw) | Weekly OT (reconciled) |
+|---|---|---|---|
+| A | 4 h | 2 h | 0 h |
+| B | 2 h | 6 h | 4 h |
 
 ## Design & Architecture
 
