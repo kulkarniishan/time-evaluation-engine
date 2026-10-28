@@ -3,12 +3,12 @@
   "dailyRules": [
     {
       "type": "attendanceDuration",
-      "wageName": "attendanceDuration",
+      "wageName": "ATTENDANCE_DURATION",
       "enabled": true
     },
     {
       "type": "dailyOvertime",
-      "wageName": "dailyOvertime",
+      "wageName": "DAILY_OVERTIME",
       "applicableDays": [
         "MONDAY",
         "TUESDAY",
@@ -20,22 +20,22 @@
     },
     {
       "type": "outsideExpectedWindow",
-      "wageName": "outsideExpectedWindow",
+      "wageName": "OUTSIDE_EXPECTED_WINDOW",
       "enabled": true
     },
     {
       "type": "sundayAndPublicHoliday",
-      "sundayWageName": "sundayWork",
-      "publicHolidayWageName": "publicHolidayWork",
+      "sundayWageName": "SUNDAY_WORK",
+      "publicHolidayWageName": "PUBLIC_HOLIDAY_WORK",
       "enabled": true
     }
   ],
   "periodRules": [
     {
       "type": "weeklyOvertime",
-      "wageName": "weeklyOvertime",
-      "dailyOvertimeWageName": "dailyOvertime",
-      "weeklyThresholdHours": 40,
+      "wageName": "WEEKLY_OVERTIME",
+      "dailyOvertimeWageName": "DAILY_OVERTIME",
+      "weeklyThreshold": "PT40H",
       "enabled": true
     }
   ]

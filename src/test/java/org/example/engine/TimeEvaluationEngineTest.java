@@ -73,7 +73,7 @@ class TimeEvaluationEngineTest {
                                 "weeklyOvertime",
                                 "weeklyOvertime",
                                 "dailyOvertime",
-                                40L,
+                                Duration.ofHours(40),
                                 true
                         )
                 )

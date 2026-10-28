@@ -58,7 +58,7 @@ public class RuleFactory {
                     new WeeklyOvertimeRule(
                             config.wageName(),
                             config.dailyOvertimeWageName(),
-                            Duration.ofHours(config.weeklyThresholdHours())
+                            config.weeklyThreshold()
                     );
 
             default -> throw new IllegalArgumentException(

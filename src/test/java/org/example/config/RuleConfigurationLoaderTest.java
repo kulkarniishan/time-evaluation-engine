@@ -3,6 +3,8 @@ package org.example.config;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RuleConfigurationLoaderTest {
@@ -31,7 +33,7 @@ class RuleConfigurationLoaderTest {
                 .findFirst()
                 .orElseThrow();
 
-        assertEquals("dailyOvertime", rule.wageName());
+        assertEquals("DAILY_OVERTIME", rule.wageName());
         assertTrue(rule.enabled());
 
         assertTrue(rule.applicableDays().contains(
@@ -53,9 +55,9 @@ class RuleConfigurationLoaderTest {
                 .findFirst()
                 .orElseThrow();
 
-        assertEquals("weeklyOvertime", rule.wageName());
-        assertEquals("dailyOvertime", rule.dailyOvertimeWageName());
-        assertEquals(40L, rule.weeklyThresholdHours());
+        assertEquals("WEEKLY_OVERTIME", rule.wageName());
+        assertEquals("DAILY_OVERTIME", rule.dailyOvertimeWageName());
+        assertEquals(Duration.ofHours(40), rule.weeklyThreshold());
         assertTrue(rule.enabled());
     }
 
@@ -70,7 +72,7 @@ class RuleConfigurationLoaderTest {
                 .findFirst()
                 .orElseThrow();
 
-        assertEquals("attendanceDuration", rule.wageName());
+        assertEquals("ATTENDANCE_DURATION", rule.wageName());
         assertTrue(rule.enabled());
     }
 
@@ -85,8 +87,8 @@ class RuleConfigurationLoaderTest {
                 .findFirst()
                 .orElseThrow();
 
-        assertEquals("sundayWork", rule.sundayWageName());
-        assertEquals("publicHolidayWork", rule.publicHolidayWageName());
+        assertEquals("SUNDAY_WORK", rule.sundayWageName());
+        assertEquals("PUBLIC_HOLIDAY_WORK", rule.publicHolidayWageName());
         assertTrue(rule.enabled());
     }
 }

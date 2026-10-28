@@ -4,6 +4,7 @@ package org.example.config;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,7 +116,7 @@ class RuleConfigurationTest {
                 "weeklyOvertime",
                 "weeklyOvertime",
                 "dailyOvertime",
-                40L,
+                Duration.ofHours(40),
                 null
         );
 
@@ -128,7 +129,7 @@ class RuleConfigurationTest {
                 "weeklyOvertime",
                 "weeklyOvertime",
                 "dailyOvertime",
-                40L,
+                Duration.ofHours(40),
                 false
         );
 
